@@ -4,7 +4,7 @@
  * ----------------------------------------------------------------------------
  *  \date       2015
  *  \author     Simon Rohou
- *  \copyright  Copyright 2021 Codac Team
+ *  \copyright  Copyright 2020 Simon Rohou
  *  \license    This program is distributed under the terms of
  *              the GNU Lesser General Public License (LGPL).
  */

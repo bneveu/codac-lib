@@ -118,6 +118,16 @@
                   ${CMAKE_CURRENT_SOURCE_DIR}/contractors/dyn/codac_CtcDeriv.cpp
                   ${CMAKE_CURRENT_SOURCE_DIR}/contractors/dyn/codac_CtcLinobs.h
                   ${CMAKE_CURRENT_SOURCE_DIR}/contractors/dyn/codac_CtcLinobs.cpp
+		  ${CMAKE_CURRENT_SOURCE_DIR}/contractors/dyn/codac_CtcDynCid.h
+		  ${CMAKE_CURRENT_SOURCE_DIR}/contractors/dyn/codac_CtcDynCid.cpp
+		  ${CMAKE_CURRENT_SOURCE_DIR}/contractors/dyn/codac_CtcDynCidGuess.h
+		  ${CMAKE_CURRENT_SOURCE_DIR}/contractors/dyn/codac_CtcDynCidGuess.cpp
+		  ${CMAKE_CURRENT_SOURCE_DIR}/contractors/dyn/codac_CtcDynBasic.h
+		  ${CMAKE_CURRENT_SOURCE_DIR}/contractors/dyn/codac_CtcDynBasic.cpp
+		  ${CMAKE_CURRENT_SOURCE_DIR}/contractors/dyn/codac_CtcIntegration.h
+		  ${CMAKE_CURRENT_SOURCE_DIR}/contractors/dyn/codac_CtcIntegration.cpp
+		  ${CMAKE_CURRENT_SOURCE_DIR}/contractors/dyn/codac_CtcExplicitDE.h
+		  ${CMAKE_CURRENT_SOURCE_DIR}/contractors/dyn/codac_CtcExplicitDE.cpp
                   ${CMAKE_CURRENT_SOURCE_DIR}/contractors/codac_predef_contractors.cpp
                   ${CMAKE_CURRENT_SOURCE_DIR}/contractors/codac_predef_contractors.h
                   ${CMAKE_CURRENT_SOURCE_DIR}/cn/codac_Domain.cpp
