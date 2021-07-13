@@ -32,6 +32,7 @@ namespace codac
 		 * todo: add comments
 		 */
 		bool contract(std::vector<Slice*> x_slice, std::vector<Slice*> v_slice, TimePropag t_propa);
+                void contract(std::vector<Domain*>& v_domains) ;
 		/*
 		 * todo: add comments
 		 */

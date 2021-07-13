@@ -603,4 +603,7 @@ namespace codac
 			}
 
 		}
+  
+  void CtcDynCidGuess::contract(std::vector<Domain*>& v_domains) {;}  		  
+  
 }

@@ -136,6 +136,8 @@ namespace codac
 	void CtcDynBasic::set_reasoning_slice(bool reasoning_slice){
 		this->m_reasoning_slice = reasoning_slice;
 	}
+ void CtcDynBasic::contract(std::vector<Domain*>& v_domains) {;}  	
+  
 }
 
 

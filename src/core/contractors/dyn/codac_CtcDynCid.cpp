@@ -331,4 +331,5 @@ namespace codac
 			}
 		}
 	}
+  void CtcDynCid::contract(std::vector<Domain*>& v_domains) {;}  	
 }

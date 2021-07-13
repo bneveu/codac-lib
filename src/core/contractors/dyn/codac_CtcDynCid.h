@@ -33,6 +33,7 @@ namespace codac
 		 * Note that the timesteps between the Tubes of x and v must be identically the same.
 		 */
 		bool contract(std::vector<Slice*> x_slice, std::vector<Slice*> v_slice, TimePropag t_propa);
+                void contract(std::vector<Domain*>& v_domains);
 		/*
 		 * creates a certain number of subslices to be treated
 		 */

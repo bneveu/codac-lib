@@ -17,6 +17,9 @@ using namespace ibex;
 
 namespace codac
 {
+  const std::string CtcDeriv::m_ctc_name="ctc_deriv";
+  std::vector<std::string> CtcDeriv::m_str_expected_doms;
+  
   CtcDeriv::CtcDeriv()
     : DynCtc(false)
   {

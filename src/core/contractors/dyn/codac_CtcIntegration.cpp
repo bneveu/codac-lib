@@ -29,7 +29,7 @@ namespace codac
 		assert(x.tdomain() == v.tdomain());
 		assert(TubeVector::same_slicing(x, v));
 		/*cpu time measurement*/
-		clock_t tStart = clock();
+		//		clock_t tStart = clock();
 
 		/*init all the tubes*/
 		vector<Slice*> x_slice;
@@ -89,7 +89,7 @@ namespace codac
 
 			/*if something is unbounded return*/
 			if (m_slice_picard_mode){
-				for (int i = 0 ; i < v_slice.size() ; i++){
+				for (unsigned int i = 0 ; i < v_slice.size() ; i++){
 					if (v_slice[i]->codomain().is_unbounded()){
 						ctc_picard.contract_picard_slice(fnc,x,nb_slices,t_propa);
 						v=fnc.eval_vector(x);
@@ -99,14 +99,14 @@ namespace codac
 						break;
 					}
 				}
-				for (int i = 0 ; i < x_slice.size() ; i++){ // preserve slicing 
+				for (unsigned int i = 0 ; i < x_slice.size() ; i++){ // preserve slicing 
 				  x_slice[i]=x[i].slice(nb_slices);
 				}
 
 			}
 
 			bool contract_slice = true;
-			for (int i = 0 ; i < x_slice.size() ; i++){
+			for (unsigned int i = 0 ; i < x_slice.size() ; i++){
 				if (v_slice[i]->codomain().is_unbounded()){
 					if (m_incremental_mode)
 						return;
@@ -172,13 +172,13 @@ namespace codac
 			}
 			/*continue with the next slice*/
 			if (t_propa & TimePropag::FORWARD){
-				for (int i = 0 ; i < x.size() ; i++){
+			  for (int i = 0 ; i < x.size() ; i++){
 					x_slice[i] = x_slice[i]->next_slice();
 					v_slice[i] = v_slice[i]->next_slice();
 				}
 			}
 			else if (t_propa & TimePropag::BACKWARD){
-				for (int i = 0 ; i < x.size() ; i++){
+				for ( int i = 0 ; i < x.size() ; i++){
 					x_slice[i] = x_slice[i]->prev_slice();
 					v_slice[i] = v_slice[i]->prev_slice();
 				}
@@ -202,20 +202,20 @@ namespace codac
 		vector<Slice*> x_slice;
 		vector<Slice*> v_slice;
 
-		for (int i = 0 ; i < x.size() ; i++){
+		for ( int i = 0 ; i < x.size() ; i++){
 			x_slice.push_back(x[i].first_slice());
 			v_slice.push_back(v[i].first_slice());
 		}
 		while(x_slice[0] != NULL){
 			IntervalVector envelope(x_slice.size()+1);
 			envelope[0] = x_slice[0]->tdomain();
-			for (int j = 0 ; j < x_slice.size() ; j++)
+			for (unsigned int j = 0 ; j < x_slice.size() ; j++)
 				envelope[j+1] = x_slice[j]->codomain();
 			envelope = fnc.eval_vector(envelope);
-			for (int j = 0 ; j < x_slice.size() ; j++)
+			for (unsigned int j = 0 ; j < x_slice.size() ; j++)
 				v_slice[j]->set_envelope(envelope[j]);
 
-			for (int i = 0 ; i < x.size() ; i++)
+			for ( int i = 0 ; i < x.size() ; i++)
 				x_slice[i] = x_slice[i]->next_slice();
 		}
 
@@ -316,7 +316,7 @@ namespace codac
 						basic->contract(aux_x_slice,aux_v_slice,t_propa);
 					}
 
-					for (int k = 0 ; k < aux_x_slice.size() ; k++){
+					for (unsigned int k = 0 ; k < aux_x_slice.size() ; k++){
 						if (aux_x_slice[k]->is_empty()){
 							if (variant == 0){
 								bisection.first = i;
@@ -336,7 +336,7 @@ namespace codac
 						}
 					}
 					//restore values for x and v
-					for (int k = 0 ; k < aux_x_slice.size() ; k++){
+					for (unsigned int k = 0 ; k < aux_x_slice.size() ; k++){
 						aux_x_slice[k]->set_envelope(x_slice[k]->codomain()); aux_v_slice[k]->set_envelope(v_slice[k]->codomain());
 						aux_x_slice[k]->set_input_gate(x_slice[k]->input_gate()); aux_v_slice[k]->set_input_gate(v_slice[k]->input_gate());
 						aux_x_slice[k]->set_output_gate(x_slice[k]->output_gate()); aux_v_slice[k]->set_output_gate(v_slice[k]->output_gate());
@@ -370,7 +370,7 @@ namespace codac
 	bool CtcIntegration::contract_idiff(std::vector<Slice*> x_slice, std::vector<Slice*> v_slice,TubeVector x,int id, std::vector<Interval>& idiff_values,TimePropag t_propa){
 
 		Interval to_try(x_slice[0]->tdomain());
-		for (int i = 1 ; i < x_slice.size(); i++)
+		for (unsigned int i = 1 ; i < x_slice.size(); i++)
 			assert(to_try == x_slice[i]->tdomain());
 
 		bool fix_point_n;
@@ -380,11 +380,11 @@ namespace codac
 		do{
 			fix_point_n = false;
 
-			for (int i = 0 ; i < x_slice.size() ; i++){
+			for (unsigned int i = 0 ; i < x_slice.size() ; i++){
 //				TubeVector aux_vector_x = x;
 				/*Fixpoint for each sub-slice at each tube*/
 				double sx;
-				double aux_envelope = x_slice[i]->codomain().diam();
+				//				double aux_envelope = x_slice[i]->codomain().diam();
 				/*without polygons*/
 
 				ctc_deriv.contract(*x_slice[i], *v_slice[i],t_propa);
@@ -395,7 +395,7 @@ namespace codac
 						/*todo: how to make this general?*/
 						Interval integral_value = -5. * x.integral(x_slice[0]->tdomain().lb(),x_slice[0]->tdomain().ub())[i];
 						IntervalVector envelope(x_slice.size());
-						for (int j = 0 ; j < x_slice.size() ; j++)
+						for (unsigned int j = 0 ; j < x_slice.size() ; j++)
 							envelope[j] = x_slice[j]->codomain();
 						aux_codomain = fnc.eval_vector(envelope)[i]+ integral_value;
 						if (id==0) idiff_values[id]=integral_value;

@@ -29,6 +29,7 @@ namespace codac
 		 * Note that the timesteps between the Tubes of x must be identically the same.
 		 */
 		bool contract(std::vector<Slice*> x_slice, std::vector<Slice*> v_slice, TimePropag t_propa);
+                void contract(std::vector<Domain*>& v_domains);
 		/*
 		 * ctc_fwd manages to make an evaluation of the current Slices in order to contract and update v
 		 */
