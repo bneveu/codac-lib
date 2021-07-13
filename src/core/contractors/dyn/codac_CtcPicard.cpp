@@ -32,8 +32,8 @@ namespace codac
   
   void CtcPicard::contract(const TFnc& f, Tube& x, TimePropag t_propa)
   {
-    assert(f.nb_vars() == f.image_dim());
-    assert(f.nb_vars() == 1 && "scalar case");
+    assert(f.nb_var() == f.image_dim());
+    assert(f.nb_var() == 1 && "scalar case");
     // todo: faster implementation in the scalar case?
     TubeVector x_vect(1, x);
     contract(f, x_vect, t_propa);
@@ -132,8 +132,8 @@ namespace codac
   void CtcPicard::contract(const TFnc& f, TubeVector& x, TimePropag t_propa)
 
   {
-    assert(f.nb_vars() == f.image_dim());
-    assert(f.nb_vars() == x.size());
+    assert(f.nb_var() == f.image_dim());
+    assert(f.nb_var() == x.size());
 
     if(x.is_empty())
       return;
@@ -199,8 +199,8 @@ namespace codac
                                       TimePropag t_propa)
   {
     assert(!((t_propa & TimePropag::FORWARD) && (t_propa & TimePropag::BACKWARD)) && "forward/backward case not implemented yet");
-    assert(f.nb_vars() == f.image_dim());
-    assert(f.nb_vars() == tube.size());
+    assert(f.nb_var() == f.image_dim());
+    assert(f.nb_var() == tube.size());
     assert(k >= 0 && k < tube.nb_slices());
     if(tube.is_empty())
       return;
@@ -233,8 +233,8 @@ namespace codac
                                             TimePropag t_propa)
   {
     assert(!((t_propa & TimePropag::FORWARD) && (t_propa & TimePropag::BACKWARD)) && "forward/backward case not implemented yet");
-    assert(f.nb_vars() == f.image_dim());
-    assert(f.nb_vars() == tube.size());
+    assert(f.nb_var() == f.image_dim());
+    assert(f.nb_var() == tube.size());
     assert(k >= 0 && k < tube.nb_slices());
 
     if(tube.is_empty())
