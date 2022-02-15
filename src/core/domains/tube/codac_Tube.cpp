@@ -905,8 +905,7 @@ namespace codac
         return numeric_limits<double>::infinity();
       }
 
-      double max_diam = 0.;
-      double max_thickness = slice->input_gate().diam();
+       double max_diam = slice->input_gate().diam();
 
       while(slice != NULL)
       {
@@ -918,15 +917,14 @@ namespace codac
 
         if(slice->output_gate().diam() > max_diam)
         {
-          max_diam = slice->codomain().diam();
-          max_thickness = slice->output_gate().diam();
+          max_diam = slice->output_gate().diam();
           t = slice->tdomain().ub();
         }
 
         slice = slice->next_slice();
       }
 
-      return max_thickness;
+      return max_diam;
     }
     
     const Trajectory Tube::diam(bool gates_thicknesses) const
